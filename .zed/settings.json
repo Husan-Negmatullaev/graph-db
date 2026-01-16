@@ -1,0 +1,10 @@
+{
+  "project_name": "create-own-graph-database",
+  "languages": {
+    "JavaScript": {
+      "prettier": {
+        "allowed": false
+      }
+    }
+  }
+}

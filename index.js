@@ -16,8 +16,8 @@ var E = [
   [7, 15],
 ];
 
-function parents(vertices) {
-  var accumulate = Array(vertices.length);
+function _parents(vertices) {
+  var accumulate = Array();
 
   for (var i = 0; i < E.length; i++) {
     var edge = E[i];
@@ -30,4 +30,44 @@ function parents(vertices) {
   return accumulate;
 }
 
-console.log(parents(V));
+var theParents = (vertices) =>
+  E.reduce(
+    (acc, edge) => (
+      parent = edge[0]
+      , child = edge[1]
+      , vertices.includes(child) ? acc.concat(parent) : acc
+    )
+    , []
+  )
+
+var theChildren = (vertices) =>
+  E.reduce(
+    (acc, edge) => (
+      child = edge[1]
+      , parent = edge[0]
+      , vertices.includes(parent) ? acc.concat(child) : acc
+    )
+    , []
+  )
+
+// console.log(
+//   theChildren(
+//     theChildren(
+//       theChildren(
+//         theChildren(
+//           theParents(
+//             theParents(
+//               theParents([8])
+//             )
+//           )
+//         )
+//       )
+//     )
+//   )
+// )
+
+console.log(theChildren(theChildren(theChildren(theParents(
+  theParents(
+    theParents([8])
+  )
+)))))
